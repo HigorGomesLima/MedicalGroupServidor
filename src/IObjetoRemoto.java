@@ -16,4 +16,6 @@ public interface IObjetoRemoto extends Remote{
     public void setConsulta (Consulta novo) throws RemoteException;
     public List<Consulta> getConsultaCliente(String codigo) throws RemoteException;
     public List<Consulta> getConsultaFuncionario(String codigo) throws RemoteException;
+    public void inserirDescricao(String codigo,String texto ) throws RemoteException;
+    public String getDescricao(String codigo) throws RemoteException;
 }

@@ -20,4 +20,6 @@ public interface IBancoDados {
     public Iterator<Consulta> getListaConsulta();
     public Iterator<Consulta> getConsultaDia(String inicio,String fim);
     public Iterator<Consulta> getConsultaEspecifiaca(String classe,String valor);
+    public void inserirDescricao(Consulta c,String texto);
+    public String getDescricao(String codigo);
 }

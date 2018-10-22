@@ -123,5 +123,11 @@ public class Agenda {
         return it;
     }
     
+    public static void inserirInformacao(String codigo, String texto){
+        db.inserirDescricao(db.getConsulta(codigo), texto);
+    }
 
+    public String getDescricao(String codigo){
+        return db.getDescricao(codigo);
+    }
 }

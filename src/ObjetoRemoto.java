@@ -14,7 +14,6 @@ public class ObjetoRemoto implements IObjetoRemoto{
     @Override
     public List<Consulta> getConsultaHoje() throws RemoteException {
         List<Consulta> retorno = Agenda.getObjeto().getConsultasHoje();
-        System.out.println(retorno.size());
         return retorno;
     }
 
@@ -89,10 +88,21 @@ public class ObjetoRemoto implements IObjetoRemoto{
 
     @Override
     public List<Consulta> getConsultaFuncionario(String codigo) throws RemoteException {
-Iterator<Consulta> it = Agenda.getObjeto().getConsultaFuncionario(codigo);
+        Iterator<Consulta> it = Agenda.getObjeto().getConsultaFuncionario(codigo);
         List<Consulta> r = new ArrayList<>();
         while(it.hasNext())
             r.add(it.next());
         return r;    }
+
+    @Override
+    public void inserirDescricao(String codigo, String texto) throws RemoteException {
+        Agenda.getObjeto().inserirInformacao(codigo,texto);
+    }
+
+    @Override
+    public String getDescricao(String codigo) throws RemoteException {
+        String r = Agenda.getObjeto().getDescricao(codigo);
+        return r;
+    }
     
 }

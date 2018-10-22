@@ -291,7 +291,6 @@ public class Persistencia implements IBancoDados{
             }else{
                 String cliente = "hinicio = '"+novo.getInicio()+"',hfim = '"+novo.getTermino()+"',codC = '"+novo.getPaciente().getCodigo()+"',codF = '"+novo.getProfissional().getCodigo()+"'";
                 String update = "UPDATE consulta SET "+cliente+" WHERE codconsulta = '"+novo.getCodigo()+"'";
-                System.out.println(update);
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(update);
             }
@@ -342,6 +341,28 @@ public class Persistencia implements IBancoDados{
         }
         
         return retorno.iterator();
+    }
+
+    @Override
+    public void inserirDescricao(Consulta c,String texto) {
+        try {
+            String update = "UPDATE consulta SET desc = '"+texto+"' WHERE codconsulta = '"+c.getCodigo()+"'";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(update);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public String getDescricao(String codigo){
+        String r = null;
+        ResultSet rs = getRS("SELECT desc FROM consulta WHERE codconsulta = '"+codigo+"'");
+        try {
+            r= rs.getString("desc");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return r;
     }
    
 }
